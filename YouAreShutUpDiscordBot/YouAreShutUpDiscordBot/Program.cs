@@ -2,6 +2,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddLogging(loggingBuilder =>
+{
+    // loggingBuilder.AddConsole();
+    // loggingBuilder.AddDebug();
+    loggingBuilder.AddAzureWebAppDiagnostics();
+});
+
 var configurationTestValue = builder.Configuration["TEST_VALUE"];
 var app = builder.Build();
 
