@@ -20,7 +20,7 @@ internal static class DiscordConfigurationExtensions
         {
             var client = new DiscordShardedClient(new DiscordSocketConfig
             {
-                GatewayIntents = GatewayIntents.AllUnprivileged | /*GatewayIntents.MessageContent | */ GatewayIntents.All
+                GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent |  GatewayIntents.All
             });
 
             return client;
