@@ -7,19 +7,28 @@ namespace YouAreShutUp.DiscordBot.Steam.Consumers;
 
 public class GetPlayerGamingPreferencesConsumer : IConsumer<GetPlayerGamingPreferencesResponse>
 {
+    private readonly ILogger<GetPlayerGamingPreferencesConsumer> _logger;
     private readonly IDiscordMessageCache<IUserMessage, ulong> _messageCache;
 
-    public GetPlayerGamingPreferencesConsumer(IDiscordMessageCache<IUserMessage, ulong> messageCache)
+    public GetPlayerGamingPreferencesConsumer(IDiscordMessageCache<IUserMessage, ulong> messageCache,
+        ILogger<GetPlayerGamingPreferencesConsumer> logger)
     {
         _messageCache = messageCache;
+        _logger = logger;
     }
 
     public async Task Consume(ConsumeContext<GetPlayerGamingPreferencesResponse> context)
     {
         var message = _messageCache.GetMessage(context.Message.ExternalMessageId);
         if (message is null)
+        {
+            _logger.LogWarning("Could not find the messageId {ExternalMessageId} in cache!",
+                context.Message.ExternalMessageId);
             return;
+        }
+
         var stringMessage = MapToString(context.Message.GamingPreferences);
+        _logger.LogInformation("Replying the message: {Message}", stringMessage);
         await message.ReplyAsync(stringMessage);
     }
 

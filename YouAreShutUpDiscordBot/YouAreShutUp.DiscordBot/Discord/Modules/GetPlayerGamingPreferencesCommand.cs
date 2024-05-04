@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.WebSocket;
 using MassTransit;
 using YouAreShutUp.Contracts.GetPlayerGamingPreferences;
 using YouAreShutUp.DiscordBot.Discord.Cache;
