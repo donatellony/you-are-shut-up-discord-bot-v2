@@ -3,16 +3,19 @@ using Discord.Commands;
 using Discord.WebSocket;
 using MassTransit;
 using YouAreShutUp.Contracts.GetPlayerGamingPreferences;
+using YouAreShutUp.DiscordBot.Discord.Cache;
 
 namespace YouAreShutUp.DiscordBot.Discord.Modules;
 
 public class GetPlayerGamingPreferencesCommand : ModuleBase<ShardedCommandContext>
 {
     private readonly IBus _bus;
+    private readonly IDiscordMessageCache<IUserMessage, ulong> _messageCache;
 
-    public GetPlayerGamingPreferencesCommand(IBus bus)
+    public GetPlayerGamingPreferencesCommand(IBus bus, IDiscordMessageCache<IUserMessage, ulong> messageCache)
     {
         _bus = bus;
+        _messageCache = messageCache;
     }
 
     [Command("GetPlayerGamingPreferences", RunMode = RunMode.Async)]
@@ -25,6 +28,7 @@ public class GetPlayerGamingPreferencesCommand : ModuleBase<ShardedCommandContex
             return;
         }
 
+        _messageCache.SetMessage(Context.Message);
         await _bus.Publish(new GetPlayerGamingPreferencesRequest
             { SteamPlayerId = steamId, ExternalMessageId = Context.Message.Id });
     }
