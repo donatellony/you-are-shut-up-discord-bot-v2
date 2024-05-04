@@ -3,9 +3,9 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Options;
-using YouAreShutUpDiscordBot.Discord.Configuration.Options;
+using YouAreShutUp.DiscordBot.Discord.Configuration.Options;
 
-namespace YouAreShutUpDiscordBot.Discord.Services.CommandHandler;
+namespace YouAreShutUp.DiscordBot.Discord.Services.CommandHandler;
 
 // Class is a little bit overloaded, but it's ok for the tests.
 internal class DiscordHostedService : IHostedService, ICommandHandler
@@ -71,14 +71,14 @@ internal class DiscordHostedService : IHostedService, ICommandHandler
         // Bail out if it's a System Message.
         if (arg is not SocketUserMessage msg)
             return;
-
+        
         // We don't want the bot to respond to itself or other bots.
-        if (msg.Author.Id == _client.CurrentUser.Id || msg.Author.IsBot)
+        if (msg.Author.IsBot || msg.Author.Id == _client.CurrentUser.Id)
             return;
 
         // Create a Command Context.
         var context = new ShardedCommandContext(_client, msg);
-
+        
         var markPos = 0;
         if (msg.HasCharPrefix('!', ref markPos) || msg.HasCharPrefix('?', ref markPos))
         {

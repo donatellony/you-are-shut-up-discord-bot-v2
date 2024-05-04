@@ -1,4 +1,4 @@
-﻿namespace YouAreShutUpDiscordBot.Discord.Configuration.Options;
+﻿namespace YouAreShutUp.DiscordBot.Discord.Configuration.Options;
 
 public class DiscordFriendsSettings
 {

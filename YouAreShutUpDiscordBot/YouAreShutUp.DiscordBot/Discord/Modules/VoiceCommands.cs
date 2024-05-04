@@ -2,9 +2,9 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Options;
-using YouAreShutUpDiscordBot.Discord.Configuration.Options;
+using YouAreShutUp.DiscordBot.Discord.Configuration.Options;
 
-namespace YouAreShutUpDiscordBot.Discord.Modules
+namespace YouAreShutUp.DiscordBot.Discord.Modules
 {
     public class VoiceCommands : BaseCommands
     {

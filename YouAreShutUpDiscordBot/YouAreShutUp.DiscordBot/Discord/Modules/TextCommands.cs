@@ -2,10 +2,10 @@ using System.Text;
 using Discord;
 using Discord.Commands;
 using Microsoft.Extensions.Options;
-using YouAreShutUpDiscordBot.Discord.Configuration.Options;
+using YouAreShutUp.DiscordBot.Discord.Configuration.Options;
 using RunMode = Discord.Commands.RunMode;
 
-namespace YouAreShutUpDiscordBot.Discord.Modules;
+namespace YouAreShutUp.DiscordBot.Discord.Modules;
 
 public class TextCommands : BaseCommands
 {

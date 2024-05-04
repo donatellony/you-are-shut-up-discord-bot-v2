@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>false</InvariantGlobalization>
+        <RootNamespace>YouAreShutUp.DiscordBot</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,6 +14,11 @@
         <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="8.0.4" />
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\YouAreShutUp.Contracts\YouAreShutUp.Contracts.csproj" />
+      <ProjectReference Include="..\YouAreShutUp.MessageBus\YouAreShutUp.MessageBus.csproj" />
     </ItemGroup>
 
 </Project>

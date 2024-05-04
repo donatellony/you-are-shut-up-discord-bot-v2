@@ -1,7 +1,7 @@
-using YouAreShutUpDiscordBot.Discord.Configuration.Extensions;
+using YouAreShutUp.DiscordBot.Discord.Configuration.Extensions;
+using YouAreShutUp.MessageBus;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging(loggingBuilder =>
@@ -10,7 +10,8 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddAzureWebAppDiagnostics();
 });
 
-builder.AddDiscord();
+builder.AddDiscord()
+    .AddYouAreShutUpAzureBus();
 
 var app = builder.Build();
 
