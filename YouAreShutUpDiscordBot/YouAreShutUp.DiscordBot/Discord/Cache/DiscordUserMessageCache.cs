@@ -15,6 +15,7 @@ public class DiscordUserMessageCache : IDiscordMessageCache<IUserMessage, ulong>
 
     public bool SetMessage(IUserMessage message)
     {
-        return _cache.TryAdd(message.Id, message);
+        _cache[message.Id] = message;
+        return true;
     }
 }
