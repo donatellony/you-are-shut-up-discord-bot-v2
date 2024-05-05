@@ -9,7 +9,7 @@ public class DiscordUserMessageCache : IDiscordMessageCache<IUserMessage, ulong>
 
     public IUserMessage? GetMessage(ulong key)
     {
-        _cache.TryGetValue(key, out var result);
+        _cache.TryRemove(key, out var result);
         return result;
     }
 
